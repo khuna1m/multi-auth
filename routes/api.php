@@ -21,6 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/get-province', [AddressController::class, 'getProvince']);
-Route::get('/get-district', [AddressController::class, 'getDistrict']);
+Route::get('/get-provinces', [AddressController::class, 'getProvinces']);
+Route::get('/get-districts', [AddressController::class, 'getDistricts']);
+Route::get('/get-sub-districts', [AddressController::class, 'getSubDistricts']);
 Route::get('/get-sub-district', [AddressController::class, 'getSubDistrict']);

@@ -13,22 +13,28 @@ class AddressController extends Controller
     {
         return view('form');
     }
-    public function getProvince()
+    public function getProvinces()
     {
         $allProvince = Province::all();
         // dd($allProvince);
         return response()->json(['provinces' => $allProvince], 200);
     }
-    public function getDistrict(Request $request)
+    public function getDistricts(Request $request)
     {
         $allDistrict = District::where('province_id', '=', $request->id)->get();
         // dd($request->id);
         return response()->json(['districts' => $allDistrict], 200);
     }
-    public function getSubDistrict(Request $request)
+    public function getSubDistricts(Request $request)
     {
         $allSubDistrict = SubDistrict::where('district_id', '=', $request->id)->get();
         // dd($request->id);
         return response()->json(['subdistricts' => $allSubDistrict], 200);
+    }
+    public function getSubDistrict(Request $request)
+    {
+        $subDistrict = SubDistrict::where('id', '=', $request->id)->get();
+        // dd($request->id);
+        return response()->json(['subdistrict' => $subDistrict], 200);
     }
 }
