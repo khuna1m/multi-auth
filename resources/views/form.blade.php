@@ -5,6 +5,9 @@
 <title>Form</title>
 
 <style>
+    body {
+        padding-bottom: 3%
+    }
     .container {
         font-family: 'Prompt', sans-serif;
     }
@@ -17,20 +20,31 @@
         margin-top: 15px;
     }
 
+    .card-header {
+        padding: 1.35rem 1.75rem 0rem 1.75rem;
+        margin-bottom: 0;
+        background-color: rgba(255, 255, 255, 0.03);
+        border-bottom: none !important;
+    }
+
+    .card-body {
+        padding: 0.75rem 1.75rem;
+    }
+
     button.btn.btn-dark {
         margin-top: 15px;
     }
 
     button.btn.btn-link{
-        color: black;
+        color: #cf2e2e;
+        font-weight: 700;
         padding: 0;
     }
 
     button.btn.btn-link:hover {
-        color: red;
+        color: #902020;
         text-decoration: none;
     }
-
 </style>
 
 <div class="container">
@@ -39,8 +53,9 @@
             <div id="address-card">
                 <div class="card">
                     <div class="card-header">
-                        รายละเอียดที่อยู่
-                        <button id="delete" class="btn btn-link float-right">x</button>
+                        <h5>รายละเอียดที่อยู่
+                            {{-- <span><button id="delete" class="btn btn-link float-right">✕</button><span> --}}
+                        </h5>
                     </div>
                     <div class="card-body">
                         <form action="">
@@ -109,12 +124,17 @@
             $('#address-card').append(
                 document.getElementsByClassName('card')[0].outerHTML
             );
+            $('#address-card').find('h5').not(':first').last().append(
+                `<span><button id="delete" class="btn btn-link float-right">✕</button><span>`
+            );
         });
     }
 
     function deleteAddress() { 
         $('#address-card').on('click', '#delete', function() {
-            $(this).parent().parent().remove().end();
+            // $(this).parent().parent().remove().end();
+            console.log($(this).parent().find('.card'));
+            $(this).parent().parent().parent().parent().not(document.getElementsByClassName('card')[0]).remove().end();
         });
     }
     
